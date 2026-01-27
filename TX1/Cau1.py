@@ -115,7 +115,6 @@ def dem_so_cong_nhan(my_list :List):
     return dem
 
 def main():
-    # cn_list = 
     cn_list = fakedata()
     in_KQ(cn_list)
     dsach_can_tim = tim_tong_thu_nhap_lon_nhat(cn_list)
