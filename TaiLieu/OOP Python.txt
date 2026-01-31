@@ -1,0 +1,76 @@
+B1 : viết ra tất cả những gì tôi nhớ về OOP:
+OOP là cái gì ? OOP là cách lập trình hướng đối tượng
+Đối tượng là gì ? bất kì thực thể nào có thuộc tính và hành vi
+Nếu thiếu 1 trong 2 ( thuộc tính hoặc hành vi thì sao ,có còn là đối tượng không )? Có , miễn là nó đóng vai trò  trong thiết kế hệ thống, ví dụ : logger , logger là thành phần ghi lại các hoạt động trong hệ thống , nó không đại diện 1 cho 1 thực thể nào trong bài toán, chỉ có behavior , không có state nghiệp vụ..
+ngược lại thì Data Transfer Object gần như chỉ có dữ liệu, nó là 1 đối tượng để nhận và gửi dữ liệu giữa các tầng ( API -> Client ), vì sao không nên có hành vi :
+bởi vì bản chất DTO là 1 gói hàng, việc vận chuyển sẽ dùng phần trung gian của hệ thống ( API layer....), áp dụng ngoài đời thực thì 1 gói hàng chắc không biết bay đến địa chi nơi nhận đâu phải không
+Tại sao cần hướng đối tượng ? khi lập trình thì đâu chỉ có thuật toán và các con số , phải có đối tượng phù hợp với thực tế . Ví dụ con voi có tính chất là : to , có vòi, có 4 chân ,... và nó có phương thức là ăn cỏ.... 
+hướng đối tượng giúp ta giải quyết các bài toán liên quan đến thực tế mà không đơn thuần chỉ là những con số
+OOP có các tính chất : Kế thừa , Trừu tượng , kết tập , đóng gói, đa hình , hợp thành
+tác dụng : sử dụng lại mã và tránh lặp lại : nhờ tính kế thừa và đảm bảo clean code , nghĩa là code phải trông thật dễ hiểu , dễ nhìn , dễ tiếp cận vì code cũng như ngôn ngữ, nếu bạn trình bày luyên thuyên thì hẳn mọi người sẽ khó chịu khi tiếp xúc với bạn rồi
+Đóng gói dữ liệu và các thao tác liên quan thành một gói duy nhất : việc đóng gói để code tường minh hơn , chẳng vì thế mà có hẳn 1 tính chất là đóng gói
+tại sao cần đóng gói ? tính chất đóng gói tôi sẽ nói ró hơn
+Trừu tượng hóa các chi tiết trong thực tế : tinh chất trừu tượng sẽ thể hiện rõ điều này
+1. Kế thừa
+- Khái niệm: một lớp cha có các thuộc tính và phương thức mà con kế thừa nó có thể "kế thừa " những thứ đó, như câu cha truyền con nối , nếu cha bạn cao thì hẳn là bạn cũng sẽ cao giống cha bạn ... hiểu đơn giản là như thế , có nghĩa là thuộc tính của cha sẽ được các con kế thừa và lôi ra xài , cha bạn cao bạn cao -> bạn có thể lấy chiều cao đó để đi đá bóng chẳng hạn...
+các phương thức của cha cũng như thế. Nôm na thì kế thừa cho phép chúng ta tạo 1 lớp mới dựa trên lớp đã có 
+lớp được tạo ra gọi là lớp dẫn xuất , lớp con
+lớp hiện tại được lớp con kế thừa là lớp cha, lớp cơ sở 
+- Mục đích: Do có những lớp khá tương đồng nhau, và thực tế nó có liên quan đến nhau, để tránh trường hợp 1 vấn đề mà phải code y hệt nhau,thì ta chỉ cần 1 lớp làm tổng quát và các con của nó sẽ được kế thừa các phần chung đó và các con cũng sẽ có các thuộc tính riêng của mình : ví dụ bạn có con mắt to khác của cha bạn ....
+- Dấu hiệu nhận biết trong đề: dấu mũi tên tam giác rỗng ( nếu đây là biểu đồ ) , nếu có 2 lớp có quan hệ như kế thừa thực sự
+- Khi nào nên dùng: khi quan hệ cả 2 là is a, student is a human...
+- Khi nào KHÔNG nên dùng: khi cần xài lại code mà không cần phải kế thừa để sử dụng, Khi chỉ cần dùng lại code → dùng composition / aggregation
+- Cú pháp Python: gọi nó bên cạnh class con VD : NHanVienPartTime(NHanVien)
+- Lỗi hay gặp: không gọi super() để kế thừa , thiếu các thuộc tính của con .....
+- đặc biệt là : lớp con có thể định nghĩa lại phương thức được kế thừa từ cha mà không làm ảnh hưởng đến cha. Như kiểu ngày xưa ( 10 năm trước ) , cha bạn dạy cho bạn 1 phương thức quydoitien() với nội dung : cứ 1 Dollar = 18 nghìn VND, sau này bạn kế thừa phương thức này, tuy nhiên mệnh giá đã thay đổi , bạn có thể thay đổi nội dung thành 1 Dollar = 23 nghìn vnd (đây gọi là method overriding) , việc mình sửa ở lớp con cho phù hợp sẽ chẳng ảnh hưởng gì đến lớp cha, vì khi gọi phương thức ra thì sẽ gọi ở lớp con, không liên quan đến cha -> không ảnh hưởng
+2. Hợp thành:
+- Khái niệm: là lớp biểu thị mối quan hệ has a , có vòng đời phụ thuộc , đơn giản để hiểu thì : xe mà động cơ , 1 xe có động cơ chứ không phải xe là động cơ ( phân biệt với kế thừa nha)
+Nó chứa đối tượng của lớp thành phần , dễ hiểu hơn thì là 1 căn phòng , đối tượng căn phòng này  chắc chắn sẽ có chứa thông tin cái chứa nó, chính là đối tượng tòa nhà . Vòng đời phụ thuộc chính là mối quan hệ mà cha chết -> con chết theo , tòa nhà mà không có thì làm sao có phòng
+còn những mối quan hệ có ràng buộc yếu hơn ( tác giả - sách ) thì sẽ là kết tập
+- Mục đích: như trên đã đề cập
+- Dấu hiệu nhận biết trong đề:mối quan hệ has a
+- Khi nào nên dùng: khi ta thấy mối quan hệ has - a
+- Khi nào KHÔNG nên dùng: không biết
+- Cú pháp Python:
+- Lỗi hay gặp: khi tạo mới lớp chứa mà chưa tạo lớp thành phần để truyền vào -> lỗi
+3. Trừu tượng : 1 bản vẽ như của 1 kiến trúc sư , giống như 1 ngôi nhà sẽ có 1 bản thiết kế cho riêng nó , các phương thức sẽ được khai báo tuy nhiên sẽ không làm gì hết ( pass)
+là một tập hợp các phương thức mà phải được tạo trong bất kì class con nào . Tại sao lớp con phải abstract hết tất cả phương thức, bỏ qua thì sao? 
+tại sao lại không làm gì ở lớp abstract đó ? lớp cha không biết cách làm cụ thể , ví dụ như ta có 1 object tên là Phòng với phương thức tính lương , các con của nó: Phòng IT , phòng MArketiing sẽ có cách tính lương khác nhau , lúc này ở phương thức tính lương của cha chỉ có pass , không return để đảm bảo logic
+ở trên có đề cập là khi con override phương thức của cha thì con có thể sửa nó mà ? nó có giống phần abstract ở đây không? tại sao không return rồi cho con sửa như kế thừa ?
+không trả lời được
+- Khi nào nên dùng: không biết
+- Khi nào KHÔNG nên dùng: không biết
+- Dấu hiệu nhận biết trong đề:đề yêu cầu sử dụng lớp trừu tượng để làm một hàm gì đó ..
+- Cú pháp Python:gọi from abc import ABC 
+NhanVien(ABC) 
+ABC là gì? Abstract base class
+tại sao phải gọi ra ? không biết
+-Lỗi hay gặp : viết return hay gì đó ở phương thức trừu tượng . Tại sao không được viết ? không biết
+- đặc biệt : static duck typing : đi như vịt, kêu như vịt -> chắc chắn là con vịt
+đặc điểm, lý do sử dụng : không biết
+4 . Đóng gói : có vai trò che giấu và bảo vệ trạng thái cho object.  tại sao lại cần che giấu và bảo vệ cho object ? Đơn giản là để bảo mật dữ liệu nếu như ta để các thuộc tính , phương thức quan trọng ở trạng thái public -> ai cũng có thể sửa, thay đổi , dù là vì mục đích gì cũng rất nguy hiểmm ví dụ:
+lương của bạn được khai báo là 1000000 / 1 giờ, ai đó có thể truy cập vào và sửa lại thành 2000 / giờ thì đáng sợ lắm phải không nào
+5. Đa hình : cùng tên phương thức tuy nhiên hành vi khác nhau: hiểu đơn giản thì : Đa hình = kế thừa + override + abstract
+nếu cùng phương thức mà khác hành vi thì khác gì static duck typing? hãy phân biệt đi ? không biết
+
+B2 :
+Câu 1 : OOP là gì? Nói trong 1–2 câu, KHÔNG dùng từ “thực tế”.
+Có thể nói OOP là cách tổ chức chương trình bằng đối tượng, tất cả các thuộc tính , hành vi của nó sẽ được đóng gói gọn -> chương trình dễ mở rộng và bảo trì
+Câu 2 : Một đối tượng có bắt buộc phải có cả thuộc tính và hành vi không?
+Không nha , nếu chỉ có 1 trong 2 thì nó vẫn là đối tượng miễn là nó có tác dụng trong hệ thống ( ví dụ như logger chỉ có hành vi , DTO chỉ có thuộc tính... nhưng vẫn đóng vai trò quan trọng trong hệ thống )
+Câu 3 : DTO vì sao không nên có hành vi nghiệp vụ?
+DTO là một đối tượng dùng để nhận và gửi data giữa các tầng, nhiệm vụ chính của nó là 1 nhận data và các thuộc tính, nếu có hành vi nghiệp vụ thì sẽ phá vỡ nguyên tắc phân tầng hệ thống 
+Cứ tưởng tượng DTO là 1 gói hàng đi , 1 gói hàng mà có phương thức bay đến nơi nhận thì nghe kì kì phải không nào
+Câu 4 : vậy nếu DTO có phương thức thì sẽ như thế nào, nó phá vỡ cấu trúc, nguyên tắc phân tầng như thế nào, hậu quả ? không biết
+Câu 5 : Khi nào thì nên dùng kế thừa? Khi bạn đọc thấy mối quan hệ class là is a 
+Câu 6 : Có phải nên áp dụng nhiều kế thừa cho code chặt chẽ không? không nha bro, kế thừa mà lạm dụng sẽ khiếp cây kế thừa rất sâu, code sẽ rất khó hiểu và khó bảo trì , kế thừa tạo ra sự phụ thuộc chặt và khó thay đổi sau này .Nếu mục tiêu của bạn là tái sử dụng code thì nên ưu tiên Composition ( Favor Composition Over Inheritance )
+Câu 7 :Phân biệt nhanh: kế thừa vs hợp thành bằng 1 câu hỏi duy nhất: 
+Nếu xóa A thì B có tồn tại không?
+Câu 8 : Vì sao lớp abstract thường không có implementation cho method?
+Lớp cha không biết cách làm cụ thể nên nó chỉ định nghĩa hợp đồng và ép lớp con phải cài đặt.
+Câu 9 : So sánh nhanh: override thường vs abstract method
+override là tùy chọn còn abstract là bắt buộc (1 cái con có thể kế thừa hoặc 0, 1 cái là bắt buộc phải kế thừa -> mang tính chặt chẽ hơn nhiều )
+Câu 10 : Duck typing có phải là đa hình không? Vì sao?
+Câu trả lời chắc chắn là chúng khác nhau, mặc dù chúng đều là ( cùng 1 phương thức có tên giống nhau nhưng bên trong nội dung return giá trị đều khác nhau dựa trên object nhưng chúng lại có điểm riêng của chúng và cách áp dụng cũng khác nhau. Cụ thể , Đa hình thường gắn liền với kế thừa và override -> mang tính chặt chẽ , và để goi ra thì cần truy cập cụ thể vào đối tượng đó ( ví dụ : lớp cơ sở aniaml có phương thức speak() , lớp dog kế thừa speak() , return là gâu gâu , phải truy cập đúng dog thì print ra được là gâu gâu)
+về phần Duck typing : dễ dàng hơn nhiều, cứ đối tượng nào có phương thức tôi cần thì tôi sẽ sử dụng nó , chẳng cần biết nó thuộc lớp nào , không cần chung 1 cha
+( ví dụ ta tạo 1 hàm speak(x) , gọi x.speak(), ta có thể truyền vào đây đối tượng chó mèo ... miễn chúng nó đều có speak())
