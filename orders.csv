@@ -1,0 +1,4 @@
+OrderID,CustomerID,Product,Quantity,Price,OderYear
+1001,C001,Laptop,1,800,2022
+1002,C002,Mouse,2,20,2021
+1003,C003,Keyboard,1,50,2023
