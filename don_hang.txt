@@ -1,0 +1,6 @@
+Ma DH: DH001 | Ngay lap: 2024-06-01
+Danh sach san pham:
+Ma SP: SP003 | Ten SP: San Pham 3 | Gia ban: 150000
+Ma SP: 003 | Ten SP: Hoa | Gia ban: 56.0
+Ma SP: 002 | Ten SP: SanPham | Gia ban: 22.0
+Tong tien: 150078.0
