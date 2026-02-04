@@ -1,0 +1,10 @@
+| FW03  | Erling Haaland       | 23  | Na Uy        | 95 | 9500000 |Ao: 9   | CLB: Real Madrid|
+| FW04  | Kylian Mbappe        | 25  | Phap         | 95 | 9500000 |Ao: 7   | CLB: Real Madrid|
+| FW02  | Lionel Messi         | 37  | Argentina    | 95 | 9500000 |Ao: 10  | CLB: Real Madrid|
+| FW01  | Cristiano Ronaldo    | 39  | Bo Dao Nha   | 95 | 9500000 |Ao: 7   | CLB: Real Madrid|
+| MF03  | Jude Bellingham      | 20  | Anh          | 93 | 7440000 |Ao: 5   | CLB: Real Madrid|
+| MF01  | Kevin De Bruyne      | 32  | Bi           | 93 | 7440000 |Ao: 17  | CLB: Real Madrid|
+| MF02  | Luka Modric          | 38  | Croatia      | 93 | 7440000 |Ao: 10  | CLB: Real Madrid|
+| DF03  | Alphonso Davies      | 23  | Canada       | 90 | 6300000 |Ao: 19  | CLB: Real Madrid|
+| DF01  | Virgil van Dijk      | 32  | Ha Lan       | 90 | 6300000 |Ao: 4   | CLB: Real Madrid|
+| DF02  | Sergio Ramos         | 37  | Tay Ban Nha  | 90 | 6300000 |Ao: 4   | CLB: Real Madrid|

@@ -1,0 +1,5 @@
+| ma : GD01 | loai giao dich : Mua | ngay : 1 | gia tri : 300000000 | loai tai san : Vàng
+| ma : GD04 | loai giao dich : Ban | ngay : 15 | gia tri : 450000000 | loai tai san : Vàng
+| ma : GD05 | loai giao dich : Mua | ngay : 20 | gia tri : 600000000 | loai tai san : Co phieu
+| ma : GD02 | loai giao dich : Ban | ngay : 5 | gia tri : 800000000 | loai tai san : Vàng
+| ma : GD03 | loai giao dich : Mua | ngay : 10 | gia tri : 1200000000 | loai tai san : Bat dong san
