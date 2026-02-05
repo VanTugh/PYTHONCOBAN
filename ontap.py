@@ -1,38 +1,79 @@
-from typing import Dict , List ,Tuple
-# Câu hỏi: Bạn có một list các tuple chứa thông tin sinh viên: 
-# Hãy sắp xếp list này theo điểm số (phần tử thứ 2 trong tuple) từ cao xuống thấp.
-students = [('Tuan', 8.0), ('Nam', 9.5), ('Hoa', 7.5)]
-students.sort(key= lambda x : x[1], reverse=True)
-print(students)
-# Câu hỏi (Sparse Matrix Representation): Tại sao Tuple có thể dùng làm key của Dictionary trong khi List thì không? 
-# Hãy ứng dụng điều này để lưu trữ một ma trận thưa (ma trận kích thước lớn 1000x1000 nhưng hầu hết giá trị là 0,
-# chỉ có vài điểm có giá trị). Yêu cầu: Tạo một cấu trúc dữ liệu lưu tọa độ (row, col) 
-# có giá trị khác 0 và viết hàm get_value(matrix, row, col) trả về giá trị tại tọa độ đó (nếu không có trả về 0).
-# Lưu trữ ma trận thưa bằng Dictionary với key là Tuple (row, col)
-sparse_matrix = {
-    (0, 5): 10,
-    (100, 2): 99,
-    (55, 60): 1
-}
-def get_value(matrix , row , col):
-    return matrix.get((row, col) , 0)
-# Câu hỏi: Viết một hàm nhận vào một list các số nguyên. 
-# Hàm trả về một list mới chỉ chứa bình phương của các số chẵn, lập phương các số lẻ trong list ban đầu. 
-# (Khuyến khích dùng List Comprehension).
-a = [1,2,3,4,5,6,7,8,9]
-b = [x ** 2 if x % 2 == 0 else x ** 3 for x in a]
-print(b)
-# Câu 3: Mức độ Vận dụng cao (High Application) - LeetCode 53
-# Câu hỏi (Maximum Subarray): Cho một mảng số nguyên nums. Hãy tìm một mảng con liên tiếp (subarray) có tổng lớn nhất và trả về tổng đó. 
-# Yêu cầu: Độ phức tạp thời gian là O(n).
-# Input: nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4] Output: 6 (Mảng con là [4, -1, 2, 1])
-nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
-def Kadane(nums):
-    nums_max = nums[0]
-    max_curr = nums[0]
-    for i in range(1, len(nums)):
-        max_curr = max(nums[i], nums[i]+max_curr)
-        nums_max = max(nums_max, max_curr)
-    print(f"tong ket qua cua mang moi la : {nums_max}")
-print(Kadane(nums))
+import pandas as pd
+from pandas import DataFrame
+def luu_data():
+    data = {
+        'OrderID': [1001, 1002, 1003, 1004, 1005],
+        'CustomerID': ['C001', 'C002', 'C003', 'C001', 'C004'],
+        'Product': ['Laptop', 'Mouse', 'Keyboard', 'Mouse', 'Laptop'],
+        'Quantity': [1, 2, 1, 5, 1],
+        'Price': [800, 20, 50, 20, 800],
+        'OrderYear': [2023, 2021, 2022, 2023, 2023]
+    }
+    new_data = pd.DataFrame(data)
+    return new_data
+def thong_ke_so_luong(df : DataFrame):
+    so_luong_don_hang = df[df['OrderYear'] == 2023]
+    dem_so_hang_hoa = so_luong_don_hang.shape[0]
+    sp_ban_duoc = so_luong_don_hang['Quantity'].sum()
+    doanh_thu = (so_luong_don_hang['Quantity'] * so_luong_don_hang['Price']).sum()
+    ban_Chay_nhat = df.groupby('Product')['Quantity'].sum().idxmax()
+    return dem_so_hang_hoa, sp_ban_duoc , doanh_thu, ban_Chay_nhat
+def don_hang_2023(df : DataFrame):
+    # df_new = df[df['OrderYear']==2023]
+    new_df = df.loc[df['OrderYear'] == 2023]
+    return new_df
+def dem_so_don(df:DataFrame):
+    dem = df.groupby('CustomerID')['Quantity'].sum()
+    return dem
+def tong_don(df:DataFrame):
+    dem = df['Quantity'].sum()
+    return dem
+def inCUSTOMER(df:DataFrame):
+    new =df['CustomerID'].unique()
+    return new
+def them_cot_moi(df:DataFrame):
+    df['Revenue'] = [1,2,3,4,5]  
+def tong_doanh_thu_theo_nam(df:DataFrame):
+    df['ThanhTien'] = df['Quantity'] * df['Price']
+    kq = df.groupby('OrderYear')['ThanhTien'].sum()
+    return kq
+def khach_Mua_nhieu(df:DataFrame):
+    new = df.groupby('CustomerID')['Quantity'].sum().idxmax()
+    return new
+def sap_theo_doanh_thu(df:DataFrame):
+    df['ThanhTien'] = df['Quantity'] * df['Price']
+    df_sorted = df.sort_values(by='ThanhTien', ascending=False)
+    return df_sorted
+def ghi_file(df:DataFrame, filename):
+    df.to_csv(filename)
+def main():
+    df = luu_data()
+    print("Data ban dau la:")
+    print(df)
 
+    # so_luong ,sp ,thu, ban= thong_ke_so_luong(df)
+    # print("so luong don hang la : ",so_luong)
+    # print("tong san pham : ",sp)
+    # print("tong doanh thu : ",thu)
+    # print("sp ban chay nhat :", ban)
+    # new_2023 = don_hang_2023(df)
+    # print("cac don hang 2023 : \n",new_2023)
+
+    # dem =dem_so_don(df)
+    # print("so don cua moi khach : \n",dem)
+
+    # tong = tong_don(df)
+    # print("tong don : ", tong)
+    new = inCUSTOMER(df)
+    print("danh sach khong trung : \n",new)
+    them_cot_moi(df)
+    print(df)
+    tien = tong_doanh_thu_theo_nam(df)
+    print("theo nam \n",tien)
+    khach = khach_Mua_nhieu(df)
+    print("khach mua nhieu nhat la : ",khach)
+    df_so = sap_theo_doanh_thu(df)
+    print(df_so)
+    
+if __name__ =="__main__":
+    main()
